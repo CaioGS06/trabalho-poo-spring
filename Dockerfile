@@ -9,6 +9,9 @@ WORKDIR /app
 COPY .mvn .mvn
 COPY mvnw pom.xml ./
 
+# Dá permissão de execução para o script mvnw
+RUN chmod +x mvnw
+
 # Copia o resto do código-fonte
 COPY src src
 
