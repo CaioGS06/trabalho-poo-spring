@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Zoológico POO</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    h2 {
+      color: #446;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Bem-vindo ao Zoológico POO!</h1>
+
+  <div th:each="habitat : ${listaDeHabitats}">
+
+    <h2 th:text="${habitat.nome}">Nome do Habitat</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Barulho (Polimorfismo)</th>
+          <th>Ação (Sobrecarga)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="animal : ${habitat.animais}">
+          <td th:text="${animal.nome}">Rex</td>
+          <td th:text="${animal.idade}">5</td>
+          <td th:text="${animal.fazerBarulho()}">Au au!</td>
+
+          <td th:if="${animal instanceof T(br.com.caiogs06.poo.avaliacao_final_poo.model.Gato)}"
+            th:text="${animal.comer('Peixe')}">
+            Comendo peixe...
+          </td>
+          <td th:unless="${animal instanceof T(br.com.caiogs06.poo.avaliacao_final_poo.model.Gato)}"
+            th:text="${animal.comer()}">
+            Comendo ração padrão...
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+
+</html>
